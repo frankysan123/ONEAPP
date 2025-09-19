@@ -125,4 +125,5 @@ with tab2:
 
     st.pyplot(fig)
     if alineado:
+
         st.success(f"✅ PT está alineado con AB dentro de la tolerancia de {tol} m")
