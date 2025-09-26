@@ -46,6 +46,13 @@ st.markdown("""
         border-radius: 10px;
         margin: 1rem 0;
     }
+    .reference-box {
+        background-color: #fff3cd;
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        border-left: 4px solid #ffc107;
+    }
     /* Hide number input arrows */
     input[type=number]::-webkit-outer-spin-button,
     input[type=number]::-webkit-inner-spin-button {
@@ -67,7 +74,7 @@ TRANSLATIONS = {
         'title_tab2': 'Convertidor de Azimut a Coordenadas',
         'subtitle_tab1': 'Introduce las coordenadas de dos puntos A y B y un punto PC (Punto de Control).',
         'subtitle_tab2': 'Convierte medidas de azimut y distancia a coordenadas X,Y.',
-        'reference_point': 'Punto de Referencia',
+        'reference_point': '🎯 Punto de Referencia (Solo para Azimut)',
         'reference_x': 'Referencia X',
         'reference_y': 'Referencia Y',
         'distance': 'Distancia',
@@ -82,7 +89,7 @@ TRANSLATIONS = {
         'title_tab2': 'Azimuth to Coordinates Converter',
         'subtitle_tab1': 'Enter coordinates for two points A and B and a control point PC.',
         'subtitle_tab2': 'Convert azimuth and distance measurements to X,Y coordinates.',
-        'reference_point': 'Reference Point',
+        'reference_point': '🎯 Reference Point (Azimuth Only)',
         'reference_x': 'Reference X',
         'reference_y': 'Reference Y',
         'distance': 'Distance',
@@ -189,7 +196,7 @@ def main():
         st.markdown(f'<div class="main-header">{get_text("title_tab1", lang_code)}</div>', unsafe_allow_html=True)
         st.markdown(get_text('subtitle_tab1', lang_code))
         
-        # Sidebar inputs for Tab 1
+        # Sidebar inputs for Tab 1 (PC-AB Alignment)
         with st.sidebar:
             st.header("🔧 Parámetros de Entrada")
             
@@ -339,11 +346,16 @@ def main():
         st.markdown(f'<div class="main-header">{get_text("title_tab2", lang_code)}</div>', unsafe_allow_html=True)
         st.markdown(get_text('subtitle_tab2', lang_code))
         
-        # Sidebar inputs for Tab 2
+        # Sidebar inputs for Tab 2 (Azimuth to Coordinates)
         with st.sidebar:
+            st.header("🔧 Parámetros de Entrada")
+            
+            # Highlighted reference point section - ONLY for azimuth tab
+            st.markdown('<div class="reference-box">', unsafe_allow_html=True)
             st.subheader(get_text('reference_point', lang_code))
             ref_x_tab2 = st.number_input(get_text('reference_x', lang_code), value=1000.0, key="ref_x_tab2")
             ref_y_tab2 = st.number_input(get_text('reference_y', lang_code), value=1000.0, key="ref_y_tab2")
+            st.markdown('</div>', unsafe_allow_html=True)
         
         # Tab 2 content
         tab2_col1, tab2_col2 = st.columns(2)
