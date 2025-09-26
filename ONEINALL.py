@@ -316,10 +316,10 @@ def main():
                         arrowprops=dict(arrowstyle='<->', color='purple', lw=1.5))
             
             ax.plot(xPC, yPC, 'ro', markersize=12, markerfacecolor='red', label="Punto de Control (PC)")
-            ax.text(xPC, yPC, '  PC', verticalalignment='center', fontweight='bold', color='red')
+            
             
             ax.plot(proj[0], proj[1], 'gs', markersize=10, label="Proyección")
-            ax.text(proj[0], proj[1], '  Proy', verticalalignment='center', fontweight='bold', color='green')
+            
             
             offset_x, offset_y = 6, 6
             ax.text(mid_x + offset_x, mid_y + offset_y, f'd = {dist_perp:.3f} m',
@@ -545,3 +545,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
